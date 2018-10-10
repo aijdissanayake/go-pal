@@ -230,6 +230,44 @@ node:
 	--mine \
 	--rpc
 
+genesis:
+	@echo 'paltestnet\n2\n3\nEOF' | puppeth || true
+	@touch inputs.txt ; \
+	NETWORK_NAME="paltestnet" ; \
+	NEW_GENESIS=2 ; \
+	ENGINE=2 ; \
+	BLOCK_TIME=5 ; \
+	LINE=$$(grep -an PAL_N1_ETHERBASE .env) ; \
+	ADDR=$$(echo $$LINE | awk 'BEGIN { FS="0x" } ; {print $$2}') ; \
+	ADDR_1=$$(echo $${ADDR%?}) ; \
+	LINE=$$(grep -an PAL_N2_ETHERBASE .env) ; \
+	ADDR=$$(echo $$LINE | awk 'BEGIN { FS="0x" } ; {print $$2}') ; \
+	ADDR_2=$$(echo $${ADDR%?}) ; \
+	LINE=$$(grep -an PAL_N3_ETHERBASE .env) ; \
+	ADDR=$$(echo $$LINE | awk 'BEGIN { FS="0x" } ; {print $$2}') ; \
+	ADDR_3=$$(echo $${ADDR%?}) ; \
+	NETWORK_ID=2020 ; \
+	MANAGE_GENESIS=2 ; \
+	EXPORT_GENESIS=2 ; \
+	GENESIS_FILE=datadir/pal.json ; \
+	echo $$NETWORK_NAME >> inputs.txt ; \
+	echo $$NEW_GENESIS >> inputs.txt ; \
+	echo $$ENGINE >> inputs.txt ; \
+	echo $$BLOCK_TIME >> inputs.txt ; \
+	echo $$ADDR_1 >> inputs.txt ; \
+	echo $$ADDR_2 >> inputs.txt ; \
+	echo $$ADDR_3'\n' >> inputs.txt ; \
+	echo $$ADDR_1 >> inputs.txt ; \
+	echo $$ADDR_2 >> inputs.txt ; \
+	echo $$ADDR_3'\n' >> inputs.txt ; \
+	echo $$NETWORK_ID >> inputs.txt ; \
+	echo $$MANAGE_GENESIS >> inputs.txt ; \
+	echo $$EXPORT_GENESIS >> inputs.txt ; \
+	echo $$GENESIS_FILE >> inputs.txt ; \
+	cat inputs.txt | puppeth || true ; \
+	rm inputs.txt ; \
+	echo PAL_NETWORK_ID := 2020 >> .env
+
 # pal commands builds the network with default settings.
 pal:
 	@rm -rf datadir
@@ -266,7 +304,7 @@ pal:
 	@$(MAKE) accounts
 
 	@echo "\n${CYAN}[5] Run puppeth${NC}"
-	# @echo "localtestnet\n2\n2\n5\n
+	@$(MAKE) genesis
 
 clean-pal:
 	rm -rf datadir/pal-*/geth

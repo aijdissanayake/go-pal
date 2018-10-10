@@ -57,9 +57,6 @@ devtools:
 	@type "solc" 2> /dev/null || echo 'Please install solc'
 	@type "protoc" 2> /dev/null || echo 'Please install protoc'
 
-swarm-devtools:
-	env GOBIN= go install ./cmd/swarm/mimegen
-
 # Cross Compilation Targets (xgo)
 
 geth-cross: geth-linux geth-darwin geth-windows geth-android geth-ios
@@ -151,3 +148,125 @@ geth-windows-amd64:
 	build/env.sh go run build/ci.go xgo -- --go=$(GO) --targets=windows/amd64 -v ./cmd/geth
 	@echo "Windows amd64 cross compilation done:"
 	@ls -ld $(GOBIN)/geth-windows-* | grep amd64
+
+# PAL Custom Commands
+.PHONY: node bootnode accounts pal
+-include .env
+
+DATADIR=datadir
+
+# Colors
+NC=\033[0m
+GREEN=\033[0;32m
+CYAN=\033[0;36m
+
+# bootnode command generates bootnode.txt if bootnode.txt is not found
+# and runs bootnode, else run bootnode.
+#
+# e.g.
+#	`make bootnode`
+bn_port=30301
+bootnode:
+	@mkdir -p datadir
+ifeq (,$(wildcard ./datadir/bootnode.txt))
+	@echo "Generating bootnode..."
+	@go run cmd/bootnode/main.go -genkey datadir/bootnode.txt
+	@echo "Running bootnode..."
+	@go run cmd/bootnode/main.go -nodekey datadir/bootnode.txt -verbosity 9 -addr :$(bn_port)
+else
+	@echo "Running bootnode..."
+	@go run cmd/bootnode/main.go -nodekey datadir/bootnode.txt -verbosity 9 -addr :$(bn_port)
+endif
+
+# accounts command generates `n` number of accounts specified (default n=3) and
+# add addresses of accounts created to .env file.
+#
+# e.g.
+#	`make accounts n=11`
+n = 3
+accounts:
+	@$(eval NUMBERS := $(shell seq 1 $(n)))
+	@$(foreach index,$(NUMBERS), \
+		mkdir -p $(DATADIR)/pal-node-$(index); \
+		echo PAL_NODE_$(index) := $(DATADIR)/pal-node-$(index) >> .env; \
+		OUTPUT="$(shell build/bin/geth account new --datadir datadir/pal-node-$(index) --password $(PAL_PWD_DIR))"; \
+		echo PAL_N$(index)_ETHERBASE := \"0x$${OUTPUT:10:40}\" >> .env; \
+	)
+
+docker:
+	@docker build -t pal/testnet .
+
+# node command runs node.
+#	args:
+#		index -
+#			node number to run (default: 1)
+#		rpcport -
+#			rpc port number (default: 8545)
+#		port -
+#			port number (default: 30303)
+# 	e.g.
+#		`make node` -> make default node 1 with default rpcport 8545 and port 30303
+#		`make node index=2 rpcport=8565 port=30304` -> make node 2 with rpcport 8565 and port 30304
+index=1
+rpcport=8545
+port=30303
+node:
+	@mkdir -p $(PAL_NODE_$(index))
+	@build/bin/geth --datadir $(PAL_NODE_$(index)) init datadir/pal.json
+	@build/bin/geth \
+	--extradata 'pal-1.0.0' \
+	--datadir $(PAL_NODE_$(index)) \
+	--networkid $(PAL_NETWORK_ID) \
+	--bootnodes $(PAL_BOOTNODE_ADDR) \
+	--unlock $(PAL_N$(index)_ETHERBASE) \
+	--etherbase $(PAL_N$(index)_ETHERBASE) \
+	--password $(PAL_PWD_DIR) \
+	--port $(port) \
+	--minerthreads 1 \
+	--rpcaddr 127.0.0.1 \
+	--rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,clique,gateway" \
+	--rpccorsdomain "*" \
+	--rpcport $(rpcport) \
+	--mine \
+	--rpc
+
+# pal commands builds the network with default settings.
+pal:
+	@rm -rf datadir
+	@cp .env-sample .env
+
+	@echo "\n${CYAN}[1] Building geth${NC}"
+	@$(MAKE) geth
+
+	@echo "\n${CYAN}[2] Setting up bootnode${NC}"
+	@echo PAL_BOOTNODE_IP := 127.0.0.1 >> .env
+	@echo Checking for running bootnode...
+	@if [ "`lsof -t -i:30301`" ]; then \
+		echo - Kill running bootnode...; \
+		kill $$(lsof -t -i:30301); \
+	else \
+		echo - No process running on port 30301...; \
+	fi
+	@echo Running bootnode...
+	@$(MAKE) bootnode &> output.txt 2>&1 &
+	@sleep 10
+	@echo Extracting bootnode address...
+	@OUTPUT="$$(grep -an enode: output.txt)" ; \
+	OUTPUT=$$(echo $$OUTPUT | awk 'BEGIN { FS="self=" } ; { print $$2 }') ; \
+	PREFIX=$$(echo $$OUTPUT | awk 'BEGIN { FS="@" } ; { print $$1 }') ; \
+	SUFFIX=$$(echo $$OUTPUT | awk 'BEGIN { FS="\]" } ; { print $$2 }') ; \
+	echo PAL_BOOTNODE_ADDR := \"$$PREFIX'@$${PAL_BOOTNODE_IP}'$$SUFFIX\" >> .env
+	@kill $$(lsof -t -i:30301) || true
+	@rm output.txt
+
+	@echo "\n${CYAN}[3] Creating password file${NC}"
+	@echo password > datadir/password.txt
+
+	@echo "\n${CYAN}[4] Creating accounts${NC}"
+	@$(MAKE) accounts
+
+	@echo "\n${CYAN}[5] Run puppeth${NC}"
+	# @echo "localtestnet\n2\n2\n5\n
+
+clean-pal:
+	rm -rf datadir/pal-*/geth

@@ -1,4 +1,14 @@
-.env
+datadir/*
+# ignore vim stuffs
+*.swo
+*.swp
 
-build/bin/*
-datadir
+.idea/*
+
+.env
+.DS_Store
+build/bin/geth
+build
+
+masternodeReward.txt
+supernodeReward.txt

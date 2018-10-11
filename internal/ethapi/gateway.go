@@ -10,11 +10,11 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/policypalnet/go-ppn/common"
-	"github.com/policypalnet/go-ppn/common/hexutil"
-	"github.com/policypalnet/go-ppn/core/types"
-	"github.com/policypalnet/go-ppn/log"
-	"github.com/policypalnet/go-ppn/rlp"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/log"
+	"github.com/ethereum/go-ethereum/rlp"
 )
 
 var (

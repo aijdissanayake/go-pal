@@ -12,15 +12,39 @@ go get ./...
 
 ## Default Setup
 
-To setup a test network with default settings, run
+To setup a test network with default configuration with 3 nodes, run
 
 ```bash
 make pal
 ```
 
-Then, setup your [genesis](#creating-your-genesis-file) file and your local testnet will be ready for testing. Listed [here](#run-the-network) are the commands to run your testnet.
+This default setup is configured as followed:
 
-## How to Build
+- bootnode
+  - ip: `127.0.0.1`
+  - port: `:30301`
+- node 1
+  - rpcport `:8545`
+  - port `:30303`
+- node 2
+  - rpcport `:8546`
+  - port `:30304`
+- node 3
+  - rpcport `:8547`
+  - port `:30305`
+
+To run your test network, run
+
+```bash
+make bootnode
+make node
+make node index=2 rpcport=8546 port=30304
+make node index=3 rpcport=8547 port=30305
+```
+
+## Custom Setup
+
+Follow the steps below to setup a custom setup for your network.
 
 1. To build geth, run
 
@@ -81,29 +105,27 @@ Then, setup your [genesis](#creating-your-genesis-file) file and your local test
 
     At account creation, directory of accounts' nodes and addresses will also be extracted and then added to `.env`.
 
-## Creating your Genesis file
+6. To create our genesis JSON file, run `puppeth`.
 
-To create our genesis JSON file, run `puppeth`.
+    In `puppeth`,
 
-In `puppeth`,
+    - Set your network name
+    - Select `2` to `Configure new genesis`
+    - Select `2` to select `Clique - proof-of-authority` as the consensus engine
+    - Set the block time to `5` seconds
+    - Select accounts created in **step 5** to be signers (Allowed to seal blocks)
+    - Select accounts created in **step 5** to be pre-funded
+    - Select your chain/network ID (or leave it as default for a random chain/network ID)
+    - Select `2` to `Manage existing genesis`
+    - Select `2` to `Export genesis configuration`
+    - Set the file to save genesis as `datadir/pal.json`
+    - Exit `puppeth`
 
-- Set your network name
-- Select `2` to `Configure new genesis`
-- Select `2` to select `Clique - proof-of-authority` as the consensus engine
-- Set the block time to `5` seconds
-- Select accounts created in **step 5** to be signers (Allowed to seal blocks)
-- Select accounts created in **step 5** to be pre-funded
-- Select your chain/network ID (or leave it as default for a random chain/network ID)
-- Select `2` to `Manage existing genesis`
-- Select `2` to `Export genesis configuration`
-- Set the file to save genesis as `datadir/pal.json`
-- Exit `puppeth`
+    Add network ID to `.env`,
 
-Add network ID to `.env`,
-
-```bash
-echo PAL_NETWORK_ID := <NETWORK_ID> >> .env
-```
+    ```bash
+    echo PAL_NETWORK_ID := <NETWORK_ID> >> .env
+    ```
 
 ## Run The Network
 
@@ -122,6 +144,7 @@ Feel free to set your own preferred `rpcport` for each node, as long as no two s
 
 | Command         | Description                      |
 |:---------------:|----------------------------------|
+| **`make pal`** | Setup a network with default configuration|
 | **`make geth`** | To build local geth|
 | **`make pal`** | To setup local testnet|
 | **`./build/bin/geth`** | To run your local geth|

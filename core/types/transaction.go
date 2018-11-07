@@ -38,9 +38,10 @@ var (
 type Transaction struct {
 	data txdata
 	// caches
-	hash atomic.Value
-	size atomic.Value
-	from atomic.Value
+	hash      atomic.Value
+	size      atomic.Value
+	from      atomic.Value
+	SNAddress *common.Address `json:"snAddress"` // Identify Supernode to reward
 }
 
 type txdata struct {
@@ -415,3 +416,10 @@ func (m Message) Gas() uint64          { return m.gasLimit }
 func (m Message) Nonce() uint64        { return m.nonce }
 func (m Message) Data() []byte         { return m.data }
 func (m Message) CheckNonce() bool     { return m.checkNonce }
+
+// TxFromGW represents transaction sent from GW which contains
+// the supernode
+type TxFromGW struct {
+	SNAddress   string `json:"snAddress"`
+	Transaction string `json:"transaction"`
+}

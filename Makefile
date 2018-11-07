@@ -231,7 +231,7 @@ node:
 	--rpc
 
 genesis:
-	@echo 'paltestnet\n2\n3\nEOF' | puppeth || true
+	@echo 'paltestnet\n2\n3\nEOF' | ./build/bin/puppeth || true
 	@touch inputs.txt ; \
 	NETWORK_NAME="paltestnet" ; \
 	NEW_GENESIS=2 ; \
@@ -264,7 +264,7 @@ genesis:
 	echo $$MANAGE_GENESIS >> inputs.txt ; \
 	echo $$EXPORT_GENESIS >> inputs.txt ; \
 	echo $$GENESIS_FILE >> inputs.txt ; \
-	cat inputs.txt | puppeth || true ; \
+	cat inputs.txt | ./build/bin/puppeth || true ; \
 	rm inputs.txt ; \
 	echo PAL_NETWORK_ID := 2020 >> .env
 

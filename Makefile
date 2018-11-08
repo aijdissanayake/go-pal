@@ -223,7 +223,7 @@ node:
 	--password $(PAL_PWD_DIR) \
 	--port $(port) \
 	--minerthreads 1 \
-	--rpcaddr 127.0.0.1 \
+	--rpcaddr 0.0.0.0 \
 	--rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,clique,gateway" \
 	--rpccorsdomain "*" \
 	--rpcport $(rpcport) \

@@ -27,10 +27,11 @@ import (
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/types"
+
+	// "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/rpc"
-	palTypes "github.com/policypalnet/go-pal/core/types"
+	"github.com/policypalnet/go-pal/core/types"
 )
 
 // Client defines typed wrappers for the Ethereum RPC API.
@@ -519,7 +520,7 @@ type TxFromGW struct {
 }
 
 // SendTransactions injects a batch of signed transactions with SN address into the pending pool for execution.
-func (ec *Client) SendTransactions(ctx context.Context, txs []*palTypes.TxFromGW) ([]common.Hash, error) {
+func (ec *Client) SendTransactions(ctx context.Context, txs []*types.TxFromGW) ([]common.Hash, error) {
 	var snAddrs, rawTxs []string
 	for _, val := range txs {
 		snAddrs = append(snAddrs, val.SNAddress)

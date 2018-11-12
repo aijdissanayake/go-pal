@@ -21,7 +21,7 @@ import (
 
 	ethereum "github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/policypalnet/go-pal/core/types"
 )
 
 // keystoreWallet implements the accounts.Wallet interface for the original

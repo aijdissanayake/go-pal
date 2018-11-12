@@ -30,6 +30,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/rpc"
+	palTypes "github.com/policypalnet/go-pal/core/types"
 )
 
 // Client defines typed wrappers for the Ethereum RPC API.
@@ -508,4 +509,28 @@ func toCallArg(msg ethereum.CallMsg) interface{} {
 		arg["gasPrice"] = (*hexutil.Big)(msg.GasPrice)
 	}
 	return arg
+}
+
+// TxFromGW represents transaction sent from GW which contains
+// the supernode
+type TxFromGW struct {
+	SNAddress   string `json:"snAddress"`
+	Transaction string `json:"transaction"`
+}
+
+// SendTransactions injects a batch of signed transactions with SN address into the pending pool for execution.
+func (ec *Client) SendTransactions(ctx context.Context, txs []*palTypes.TxFromGW) ([]common.Hash, error) {
+	var snAddrs, rawTxs []string
+	for _, val := range txs {
+		snAddrs = append(snAddrs, val.SNAddress)
+		rawTxs = append(rawTxs, val.Transaction)
+	}
+
+	var txHashes []common.Hash
+	err := ec.c.CallContext(ctx, &txHashes, "gateway_sendRawTransactions", snAddrs, rawTxs)
+	if err != nil {
+		return nil, err
+	}
+
+	return txHashes, nil
 }

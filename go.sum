@@ -62,6 +62,7 @@ github.com/naoina/toml v0.0.0-20170918210437-9fafd6967416/go.mod h1:NBIhNtsFMo3G
 github.com/nsf/termbox-go v0.0.0-20170211012700-3540b76b9c77 h1:gKl78uP/I7JZ56OFtRf7nc4m1icV38hwV0In5pEGzeA=
 github.com/nsf/termbox-go v0.0.0-20170211012700-3540b76b9c77/go.mod h1:IuKpRQcYE1Tfu+oAQqaLisqDeXgjyyltCfsaoYN18NQ=
 github.com/olekukonko/tablewriter v0.0.0-20170128050532-febf2d34b54a/go.mod h1:vsDQFd/mU46D+Z4whnwzcISnGGzXWMclvtLoiIKAKIo=
+github.com/opentracing/opentracing-go v0.0.0-20180606204148-bd9c31933947 h1:QfUW13Itj7jGDmmRoBh3/ZKOxAQv4mhpN+m2Ed4EUJ4=
 github.com/opentracing/opentracing-go v0.0.0-20180606204148-bd9c31933947/go.mod h1:UkNAQd3GIcIGf0SeVgPpRdFStlNbqXla1AfSYxPUl2o=
 github.com/pborman/uuid v0.0.0-20170112150404-1b00554d8222 h1:goeTyGkArOZIVOMA0dQbyuPWGNQJZGPwPu/QS9GlpnA=
 github.com/pborman/uuid v0.0.0-20170112150404-1b00554d8222/go.mod h1:VyrYX9gd7irzKovcSS6BIIEwPRkP2Wm2m9ufcdFSJ34=

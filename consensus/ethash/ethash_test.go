@@ -27,7 +27,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/policypalnet/go-pal/core/types"
+	"github.com/ethereum/go-ethereum/core/types"
 )
 
 // Tests that ethash works correctly in test mode.

@@ -41,7 +41,7 @@ import (
 	"github.com/ethereum/go-ethereum/swarm/storage/feed/lookup"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/policypalnet/go-pal/core/types"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/swarm/api"

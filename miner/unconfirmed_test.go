@@ -20,7 +20,7 @@ import (
 	"testing"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/policypalnet/go-pal/core/types"
+	"github.com/ethereum/go-ethereum/core/types"
 )
 
 // noopChainRetriever is an implementation of headerRetriever that always

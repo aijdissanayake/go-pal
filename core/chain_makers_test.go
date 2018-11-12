@@ -21,7 +21,7 @@ import (
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/policypalnet/go-pal/core/types"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/core/vm"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethdb"

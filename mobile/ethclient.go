@@ -21,7 +21,7 @@ package geth
 import (
 	"math/big"
 
-	"github.com/policypalnet/go-pal/core/types"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 

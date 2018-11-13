@@ -287,7 +287,7 @@ pal:
 	fi
 	@echo Running bootnode...
 	@$(MAKE) bootnode &> output.txt 2>&1 &
-	@sleep 10
+	@sleep 15
 	@echo Extracting bootnode address...
 	@OUTPUT="$$(grep -an enode: output.txt)" ; \
 	OUTPUT=$$(echo $$OUTPUT | awk 'BEGIN { FS="self=" } ; { print $$2 }') ; \
@@ -295,7 +295,7 @@ pal:
 	SUFFIX=$$(echo $$OUTPUT | awk 'BEGIN { FS="\]" } ; { print $$2 }') ; \
 	echo PAL_BOOTNODE_ADDR := \"$$PREFIX'@$${PAL_BOOTNODE_IP}'$$SUFFIX\" >> .env
 	@kill $$(lsof -t -i:30301) || true
-	@rm output.txt
+	# @rm output.txt
 
 	@echo "\n${CYAN}[3] Creating password file${NC}"
 	@echo password > datadir/password.txt

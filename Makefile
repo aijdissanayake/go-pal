@@ -274,7 +274,7 @@ pal:
 	@cp .env-sample .env
 
 	@echo "\n${CYAN}[1] Building geth${NC}"
-	@$(MAKE) geth
+	@$(MAKE) all
 
 	@echo "\n${CYAN}[2] Setting up bootnode${NC}"
 	@echo PAL_BOOTNODE_IP := 127.0.0.1 >> .env
@@ -295,7 +295,7 @@ pal:
 	SUFFIX=$$(echo $$OUTPUT | awk 'BEGIN { FS="\]" } ; { print $$2 }') ; \
 	echo PAL_BOOTNODE_ADDR := \"$$PREFIX'@$${PAL_BOOTNODE_IP}'$$SUFFIX\" >> .env
 	@kill $$(lsof -t -i:30301) || true
-	# @rm output.txt
+	@rm output.txt
 
 	@echo "\n${CYAN}[3] Creating password file${NC}"
 	@echo password > datadir/password.txt

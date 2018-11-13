@@ -1,48 +1,50 @@
 module github.com/ethereum/go-ethereum
 
 require (
-	bazil.org/fuse v0.0.0-20160811212531-371fbbdaa898
-	github.com/Azure/azure-pipeline-go v0.0.0-20180607212504-7571e8eb0876
-	github.com/Azure/azure-storage-blob-go v0.0.0-20180712005634-eaae161d9d5e
-	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6
-	github.com/aristanetworks/goarista v0.0.0-20170210015632-ea17b1a17847
-	github.com/btcsuite/btcd v0.0.0-20171128150713-2e60448ffcc6
-	github.com/cespare/cp v0.1.0
+	bazil.org/fuse v0.0.0-20180421153158-65cc252bf669
+	github.com/Azure/azure-pipeline-go v0.1.8
+	github.com/Azure/azure-storage-blob-go v0.0.0-20181023070848-cf01652132cc
+	github.com/StackExchange/wmi v0.0.0-20180725035823-b12b22c5341f
+	github.com/aristanetworks/goarista v0.0.0-20181101003910-5bb443fba8e0
+	github.com/btcsuite/btcd v0.0.0-20181013004428-67e573d211ac
+	github.com/cespare/cp v1.0.0
 	github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd
-	github.com/davecgh/go-spew v1.1.0
-	github.com/deckarep/golang-set v0.0.0-20180603214616-504e848d77ea
-	github.com/dgrijalva/jwt-go v0.0.0-20170201225849-2268707a8f08
+	github.com/davecgh/go-spew v1.1.1
+	github.com/deckarep/golang-set v1.7.1
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/docker/docker v0.0.0-20180625184442-8e610b2b55bf
-	github.com/edsrzf/mmap-go v0.0.0-20160512033002-935e0e8a636c
+	github.com/edsrzf/mmap-go v0.0.0-20170320065105-0bce6a688712
 	github.com/elastic/gosigar v0.0.0-20180330100440-37f05ff46ffa
-	github.com/fatih/color v1.3.0
-	github.com/fjl/memsize v0.0.0-20180418122429-ca190fb6ffbc
-	github.com/gizak/termui v0.0.0-20170117222342-991cd3d38091
+	github.com/fatih/color v1.7.0
+	github.com/fjl/memsize v0.0.0-20180929194037-2a09253e352a
+	github.com/gizak/termui v2.3.0+incompatible
 	github.com/go-ole/go-ole v1.2.1
-	github.com/go-stack/stack v1.5.4
-	github.com/golang/protobuf v0.0.0-20170726212829-748d386b5c1e
-	github.com/golang/snappy v0.0.0-20170215233205-553a64147049
-	github.com/hashicorp/golang-lru v0.0.0-20160813221303-0a025b7e63ad
-	github.com/huin/goupnp v0.0.0-20161224104101-679507af18f3
-	github.com/influxdata/influxdb v0.0.0-20180221223340-01288bdb0883
+	github.com/go-stack/stack v1.8.0
+	github.com/golang/protobuf v1.2.0
+	github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db
+	github.com/hashicorp/golang-lru v0.5.0
+	github.com/huin/goupnp v1.0.0
+	github.com/influxdata/influxdb v1.7.0
 	github.com/jackpal/go-nat-pmp v0.0.0-20160603034137-1fa385a6f458
-	github.com/julienschmidt/httprouter v0.0.0-20170430222011-975b5c4c7c21
-	github.com/karalabe/hid v0.0.0-20170821103837-f00545f9f374
-	github.com/maruel/panicparse v0.0.0-20160720141634-ad661195ed0e
+	github.com/julienschmidt/httprouter v1.2.0
+	github.com/karalabe/hid v0.0.0-20180420081245-2b4488a37358
+	github.com/kr/pty v1.1.3 // indirect
+	github.com/maruel/panicparse v1.1.1
 	github.com/mattn/go-colorable v0.0.0-20180310133214-efa589957cd0
 	github.com/mattn/go-isatty v0.0.0-20180830101745-3fb116b82035
 	github.com/mattn/go-runewidth v0.0.3
-	github.com/mitchellh/go-wordwrap v0.0.0-20150314170334-ad45545899c7
+	github.com/mitchellh/go-wordwrap v1.0.0
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826
 	github.com/naoina/go-stringutil v0.1.0 // indirect
 	github.com/naoina/toml v0.0.0-20170918210437-9fafd6967416
-	github.com/nsf/termbox-go v0.0.0-20170211012700-3540b76b9c77
-	github.com/olekukonko/tablewriter v0.0.0-20170128050532-febf2d34b54a
+	github.com/nsf/termbox-go v0.0.0-20181027232701-60ab7e3d12ed
+	github.com/olekukonko/tablewriter v0.0.1
 	github.com/opentracing/opentracing-go v0.0.0-20180606204148-bd9c31933947
-	github.com/pborman/uuid v0.0.0-20170112150404-1b00554d8222
-	github.com/peterh/liner v0.0.0-20170902204657-a37ad3984311
+	github.com/pborman/uuid v1.2.0
+	github.com/peterh/liner v1.1.0
 	github.com/pkg/errors v0.0.0-20171216070316-e881fd58d78e
 	github.com/pmezard/go-difflib v1.0.0
+<<<<<<< HEAD
 	github.com/policypalnet/go-pal v0.0.0-20181112063718-f54fbe03548f
 	github.com/prometheus/prometheus v0.0.0-20170814170113-3101606756c5
 	github.com/rjeczalik/notify v0.9.1
@@ -60,8 +62,27 @@ require (
 	golang.org/x/text v0.0.0-20171227012246-e19ae1496984
 	golang.org/x/tools v0.0.0-20170215214335-be0fcc31ae23
 	gopkg.in/check.v1 v1.0.0-20161208181325-20d25e280405
+=======
+	github.com/policypalnet/go-ppn v0.0.10
+	github.com/prometheus/prometheus v2.5.0+incompatible
+	github.com/rjeczalik/notify v0.9.2
+	github.com/robertkrimen/otto v0.0.0-20180617131154-15f95af6e78d
+	github.com/rs/cors v1.6.0
+	github.com/rs/xhandler v0.0.0-20170707052532-1eb70cf1520d
+	github.com/stretchr/testify v1.2.2
+	github.com/syndtr/goleveldb v0.0.0-20181105012736-f9080354173f
+	github.com/uber/jaeger-client-go v2.15.0+incompatible
+	github.com/uber/jaeger-lib v0.0.0-20180615202729-a51202d6f4a7
+	golang.org/x/crypto v0.0.0-20181106171534-e4dc69e5b2fd
+	golang.org/x/net v0.0.0-20181108082009-03003ca0c849
+	golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
+	golang.org/x/sys v0.0.0-20181107165924-66b7b1311ac8
+	golang.org/x/text v0.3.0
+	golang.org/x/tools v0.0.0-20181111003725-6d71ab8aade0
+	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127
+>>>>>>> develop
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce
-	gopkg.in/olebedev/go-duktape.v3 v3.0.0-20180302121509-abf0ba0be5d5
+	gopkg.in/olebedev/go-duktape.v3 v3.0.0-20180723110524-d53328019b21
 	gopkg.in/sourcemap.v1 v1.0.5
 	gopkg.in/urfave/cli.v1 v1.20.0
 )

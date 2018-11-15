@@ -266,7 +266,7 @@ genesis:
 	echo $$GENESIS_FILE >> inputs.txt ; \
 	cat inputs.txt | ./build/bin/puppeth || true ; \
 	rm inputs.txt ; \
-	echo PAL_NETWORK_ID := 2020 >> .env
+	echo PAL_NETWORK_ID := 2018 >> .env
 
 # pal commands builds the network with default settings.
 pal:

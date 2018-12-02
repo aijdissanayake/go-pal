@@ -21,17 +21,17 @@ make pal
 This default setup is configured as followed:
 
 - bootnode
-  - ip: `127.0.0.1`
-  - port: `:30301`
+    - ip: `127.0.0.1`
+    - port: `:30301`
 - node 1
-  - rpcport `:8545`
-  - port `:30303`
+    - rpcport `:8545`
+    - port `:30303`
 - node 2
-  - rpcport `:8546`
-  - port `:30304`
+    - rpcport `:8546`
+    - port `:30304`
 - node 3
-  - rpcport `:8547`
-  - port `:30305`
+    - rpcport `:8547`
+    - port `:30305`
 
 To run your test network, run
 
@@ -63,7 +63,7 @@ Follow the steps below to setup a custom setup for your network.
     By default, bootnode will run at port `30301`. To run bootnode with a port of your choice, run the following,
 
     ```bash
-    make bootnode port=<CHOICE_OF_PORT>
+    make bootnode bn_port=<CHOICE_OF_PORT>
     ```
 
 3. Get enode address from the output of `make bootnode` and run the following with the `IP` and `PORT` of your choice,

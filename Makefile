@@ -11,10 +11,10 @@
 GOBIN = $(shell pwd)/build/bin
 GO ?= latest
 
-geth:
+pal:
 	build/env.sh go run build/ci.go install ./cmd/pal
 	@echo "Done building."
-	@echo "Run \"$(GOBIN)/pal\" to launch geth."
+	@echo "Run \"$(GOBIN)/pal\" to launch pal."
 
 swarm:
 	build/env.sh go run build/ci.go install ./cmd/swarm
@@ -212,8 +212,8 @@ rpcport=8545
 port=30303
 node:
 	@mkdir -p $(PAL_NODE_$(index))
-	@build/bin/geth --datadir $(PAL_NODE_$(index)) init datadir/pal.json
-	@build/bin/geth \
+	@build/bin/pal --datadir $(PAL_NODE_$(index)) init datadir/pal.json
+	@build/bin/pal \
 	--extradata 'pal-1.0.0' \
 	--datadir $(PAL_NODE_$(index)) \
 	--networkid $(PAL_NETWORK_ID) \

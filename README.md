@@ -164,7 +164,7 @@ Feel free to set your own preferred `rpcport` for each node, as long as no two s
 
 | Command         | Description                      |
 |:---------------:|----------------------------------|
-| **`go attach <path-to-ppn-folder>/go-ppn/datadir/ppn-node/geth.ipc`** | Connect to run Geth console (JS console)|
+| **`go attach <path-to-ppn-folder>/go-ppn/datadir/ppn-node/pal.ipc`** | Connect to run PAL console (JS console)|
 
 ## Reference
 

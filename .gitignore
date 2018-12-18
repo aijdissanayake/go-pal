@@ -7,8 +7,9 @@ datadir/*
 
 .env
 .DS_Store
-build/bin/geth
 build
+build/bin/*
+build/bin/geth
 
 masternodeReward.txt
 supernodeReward.txt

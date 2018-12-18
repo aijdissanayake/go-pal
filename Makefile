@@ -246,7 +246,7 @@ genesis:
 	LINE=$$(grep -an PAL_N3_ETHERBASE .env) ; \
 	ADDR=$$(echo $$LINE | awk 'BEGIN { FS="0x" } ; {print $$2}') ; \
 	ADDR_3=$$(echo $${ADDR%?}) ; \
-	NETWORK_ID=2020 ; \
+	NETWORK_ID=2018 ; \
 	MANAGE_GENESIS=2 ; \
 	EXPORT_GENESIS=2 ; \
 	GENESIS_FILE=datadir/pal.json ; \

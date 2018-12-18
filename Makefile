@@ -269,7 +269,7 @@ genesis:
 	echo PAL_NETWORK_ID := 2018 >> .env
 
 # pal commands builds the network with default settings.
-pal:
+setup-pal:
 	@rm -rf datadir
 	@cp .env-sample .env
 

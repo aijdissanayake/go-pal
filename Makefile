@@ -189,7 +189,7 @@ accounts:
 	@$(foreach index,$(NUMBERS), \
 		mkdir -p $(DATADIR)/pal-node-$(index); \
 		echo PAL_NODE_$(index) := $(DATADIR)/pal-node-$(index) >> .env; \
-		OUTPUT="$(shell build/bin/geth account new --datadir datadir/pal-node-$(index) --password $(PAL_PWD_DIR))"; \
+		OUTPUT="$(shell build/bin/pal account new --datadir datadir/pal-node-$(index) --password $(PAL_PWD_DIR))"; \
 		echo PAL_N$(index)_ETHERBASE := \"0x$${OUTPUT:10:40}\" >> .env; \
 	)
 

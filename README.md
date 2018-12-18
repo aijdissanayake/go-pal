@@ -15,7 +15,7 @@ go get ./...
 To setup a test network with default configuration with 3 nodes, run
 
 ```bash
-make pal
+make setup-pal
 ```
 
 This default setup is configured as followed:
@@ -46,10 +46,10 @@ make node index=3 rpcport=8547 port=30305
 
 Follow the steps below to setup a custom setup for your network.
 
-1. To build geth, run
+1. To build pal, run
 
     ```bash
-    make geth
+    make pal
     ```
 
 2. To generate and run a bootnode,
@@ -144,10 +144,10 @@ Feel free to set your own preferred `rpcport` for each node, as long as no two s
 
 | Command         | Description                      |
 |:---------------:|----------------------------------|
-| **`make pal`** | Setup a network with default configuration|
-| **`make geth`** | To build local geth|
-| **`make pal`** | To setup local testnet|
-| **`./build/bin/geth`** | To run your local geth|
+| **`make setup-pal`** | Setup a network with default configuration|
+| **`make pal`** | To build local pal|
+| **`make setup-pal`** | To setup local testnet|
+| **`./build/bin/pal`** | To run your local pal|
 | **`make bootnode`** | To create a bootnode|
 | **`make node`** | To create a node with ppn-node-*|
 | **`make clean-ppn`** | Clean all datadir|
@@ -160,7 +160,7 @@ Feel free to set your own preferred `rpcport` for each node, as long as no two s
 | **`go test ./eth`** | Go into your eth folder and run all test files|
 | **`go test -v -cpu 4 ./eth`** | Running all the test cases in eth folder. Using options -cpu (number of cores allowed) and -v (logging even if no error) is recommended.|
 
-## How to Run Geth Console
+## How to Run Pal Console
 
 | Command         | Description                      |
 |:---------------:|----------------------------------|

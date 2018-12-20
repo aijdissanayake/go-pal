@@ -1,6 +1,6 @@
-# Go-PPN
+# GO-PAL
 
-Official implementation of PolicyPal Network's Protocol in Go.
+Official implementation of PAL Network's Protocol in Go.
 
 ## Get all Dependency packages
 
@@ -149,8 +149,8 @@ Feel free to set your own preferred `rpcport` for each node, as long as no two s
 | **`make setup-pal`** | To setup local testnet|
 | **`./build/bin/pal`** | To run your local pal|
 | **`make bootnode`** | To create a bootnode|
-| **`make node`** | To create a node with ppn-node-*|
-| **`make clean-ppn`** | Clean all datadir|
+| **`make node`** | To create a node with pal-node-*|
+| **`make clean-pal`** | Clean all datadir|
 | **`make accounts`** | Creates all datadir accounts|
 
 ## How to Run Tests
@@ -160,11 +160,11 @@ Feel free to set your own preferred `rpcport` for each node, as long as no two s
 | **`go test ./eth`** | Go into your eth folder and run all test files|
 | **`go test -v -cpu 4 ./eth`** | Running all the test cases in eth folder. Using options -cpu (number of cores allowed) and -v (logging even if no error) is recommended.|
 
-## How to Run Pal Console
+## How to Run PAL Console
 
 | Command         | Description                      |
 |:---------------:|----------------------------------|
-| **`go attach <path-to-ppn-folder>/go-ppn/datadir/ppn-node/pal.ipc`** | Connect to run PAL console (JS console)|
+| **`go attach <path-to-pal-folder>/go-pal/datadir/pal-node/pal.ipc`** | Connect to run PAL console (JS console)|
 
 ## Reference
 
@@ -175,7 +175,7 @@ Feel free to set your own preferred `rpcport` for each node, as long as no two s
 ## License
 
 ```text
-Copyright (C) 2018  PolicyPal Network
+Copyright (C) 2018  PAL Network
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

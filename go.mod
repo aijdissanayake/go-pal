@@ -1,4 +1,4 @@
-module github.com/ethereum/go-ethereum
+module github.com/policypalnet/go-pal
 
 require (
 	bazil.org/fuse v0.0.0-20160811212531-371fbbdaa898

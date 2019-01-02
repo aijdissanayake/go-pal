@@ -14,6 +14,68 @@ To get all dependency packages, run
 make install
 ```
 
+## Installation for linux/amd64
+
+Setup `ubuntu` instance:
+```bash
+# Standard update.
+$ sudo apt-get update
+$ sudo apt-get -y upgrade
+
+# Install necessary packages, including the gcc.
+$ sudo apt-get install -y build-essential gcc git wget vim make
+```
+
+Install `go v1.11`:
+
+```bash
+# Download.
+$ cd /tmp
+$ wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+
+# Unpack.
+$ sudo tar -xvf go1.11.linux-amd64.tar.gz
+$ sudo mv go /usr/local
+```
+
+Setup `GOPATH`:
+
+```bash
+# .profile
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+# To restart the profile.
+$ source ~/.profile
+
+# Test version.
+$ go version
+// go version go1.11 linux/amd64
+```
+
+Setup GO-PAL:
+
+```bash
+# Clone directory.
+$ git clone https://github.com/policypalnet/go-pal.git
+$ cd go-pal
+
+# Install dependencies.
+$ make install
+
+# Important. Import the missing `.c` files.
+$ go get github.com/karalabe/hid
+
+# Temporarily disable go-module.
+$ GO111MODULE=off go get github.com/karalabe/hid
+
+# Manually copy the missing `.c` files for now.
+$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/
+$ make setup-pal
+```
+
+
 ## Default Setup
 
 To setup a test network with default configuration with 3 nodes, run

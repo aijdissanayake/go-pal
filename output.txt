@@ -1,0 +1,34 @@
+Generating bootnode...
+cmd/bootnode/main.go:27:2: cannot find package "github.com/ethereum/go-ethereum/cmd/utils" in any of:
+	/Users/alextanhongpin/go/src/github.com/policypalnet/go-pal/vendor/github.com/ethereum/go-ethereum/cmd/utils (vendor tree)
+	/usr/local/Cellar/go/1.11.4/libexec/src/github.com/ethereum/go-ethereum/cmd/utils (from $GOROOT)
+	/Users/alextanhongpin/go/src/github.com/ethereum/go-ethereum/cmd/utils (from $GOPATH)
+cmd/bootnode/main.go:28:2: cannot find package "github.com/ethereum/go-ethereum/crypto" in any of:
+	/Users/alextanhongpin/go/src/github.com/policypalnet/go-pal/vendor/github.com/ethereum/go-ethereum/crypto (vendor tree)
+	/usr/local/Cellar/go/1.11.4/libexec/src/github.com/ethereum/go-ethereum/crypto (from $GOROOT)
+	/Users/alextanhongpin/go/src/github.com/ethereum/go-ethereum/crypto (from $GOPATH)
+cmd/bootnode/main.go:29:2: cannot find package "github.com/ethereum/go-ethereum/log" in any of:
+	/Users/alextanhongpin/go/src/github.com/policypalnet/go-pal/vendor/github.com/ethereum/go-ethereum/log (vendor tree)
+	/usr/local/Cellar/go/1.11.4/libexec/src/github.com/ethereum/go-ethereum/log (from $GOROOT)
+	/Users/alextanhongpin/go/src/github.com/ethereum/go-ethereum/log (from $GOPATH)
+cmd/bootnode/main.go:30:2: cannot find package "github.com/ethereum/go-ethereum/p2p/discover" in any of:
+	/Users/alextanhongpin/go/src/github.com/policypalnet/go-pal/vendor/github.com/ethereum/go-ethereum/p2p/discover (vendor tree)
+	/usr/local/Cellar/go/1.11.4/libexec/src/github.com/ethereum/go-ethereum/p2p/discover (from $GOROOT)
+	/Users/alextanhongpin/go/src/github.com/ethereum/go-ethereum/p2p/discover (from $GOPATH)
+cmd/bootnode/main.go:31:2: cannot find package "github.com/ethereum/go-ethereum/p2p/discv5" in any of:
+	/Users/alextanhongpin/go/src/github.com/policypalnet/go-pal/vendor/github.com/ethereum/go-ethereum/p2p/discv5 (vendor tree)
+	/usr/local/Cellar/go/1.11.4/libexec/src/github.com/ethereum/go-ethereum/p2p/discv5 (from $GOROOT)
+	/Users/alextanhongpin/go/src/github.com/ethereum/go-ethereum/p2p/discv5 (from $GOPATH)
+cmd/bootnode/main.go:32:2: cannot find package "github.com/ethereum/go-ethereum/p2p/enode" in any of:
+	/Users/alextanhongpin/go/src/github.com/policypalnet/go-pal/vendor/github.com/ethereum/go-ethereum/p2p/enode (vendor tree)
+	/usr/local/Cellar/go/1.11.4/libexec/src/github.com/ethereum/go-ethereum/p2p/enode (from $GOROOT)
+	/Users/alextanhongpin/go/src/github.com/ethereum/go-ethereum/p2p/enode (from $GOPATH)
+cmd/bootnode/main.go:33:2: cannot find package "github.com/ethereum/go-ethereum/p2p/nat" in any of:
+	/Users/alextanhongpin/go/src/github.com/policypalnet/go-pal/vendor/github.com/ethereum/go-ethereum/p2p/nat (vendor tree)
+	/usr/local/Cellar/go/1.11.4/libexec/src/github.com/ethereum/go-ethereum/p2p/nat (from $GOROOT)
+	/Users/alextanhongpin/go/src/github.com/ethereum/go-ethereum/p2p/nat (from $GOPATH)
+cmd/bootnode/main.go:34:2: cannot find package "github.com/ethereum/go-ethereum/p2p/netutil" in any of:
+	/Users/alextanhongpin/go/src/github.com/policypalnet/go-pal/vendor/github.com/ethereum/go-ethereum/p2p/netutil (vendor tree)
+	/usr/local/Cellar/go/1.11.4/libexec/src/github.com/ethereum/go-ethereum/p2p/netutil (from $GOROOT)
+	/Users/alextanhongpin/go/src/github.com/ethereum/go-ethereum/p2p/netutil (from $GOPATH)
+make[1]: *** [bootnode] Error 1

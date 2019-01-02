@@ -11,7 +11,7 @@ This is the implementation of PAL Network's private layer and masternode. The co
 To get all dependency packages, run
 
 ```bash
-go get ./...
+make install
 ```
 
 ## Default Setup

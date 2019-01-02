@@ -2,6 +2,10 @@
 
 Official implementation of PAL Network's Protocol in Go.
 
+## Notice
+
+This is the implementation of PAL Network's private layer and masternode. The correct configuration is needed in order to connect to PAL blockchain. Public can contribute to the network by running on PAL Network's public layer as a supernode using the wallet.
+
 ## Get all Dependency packages
 
 To get all dependency packages, run

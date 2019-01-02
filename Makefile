@@ -308,3 +308,7 @@ setup-pal:
 
 clean-pal:
 	rm -rf datadir/pal-*/geth
+
+install: 
+	@GO111MODULE=on go mod tidy
+	@GO111MODULE=on go mod vendor

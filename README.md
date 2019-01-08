@@ -71,7 +71,7 @@ $ go get github.com/karalabe/hid
 $ GO111MODULE=off go get github.com/karalabe/hid
 
 # Manually copy the missing `.c` files for now.
-$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/karalabe
+$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com
 $ make setup-pal
 ```
 

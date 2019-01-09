@@ -196,7 +196,7 @@ accounts:
 docker:
 	@docker build -t pal/testnet .
 
-# node command runs node.
+# run `make node` to run a node
 #	args:
 #		index -
 #			node number to run (default: 1)
@@ -207,12 +207,34 @@ docker:
 # 	e.g.
 #		`make node` -> make default node 1 with default rpcport 8545 and port 30303
 #		`make node index=2 rpcport=8565 port=30304` -> make node 2 with rpcport 8565 and port 30304
+node:
+	@UNAMEOUT="$$(uname -s)"; \
+	if [  "Darwin" = $${UNAMEOUT} ]; then \
+		if [ "" = "$$(which openvpn)" ]; then \
+			echo "No openvpn detected. Setting up openvpn using homebrew..." ; \
+			brew install openvpn ; \
+		fi ; \
+		export PATH=$$(brew --prefix openvpn)/sbin:$$PATH ; \
+	fi; \
+	if [  "Linux" = $${UNAMEOUT} ]; then \
+		if [ $$(dpkg-query -W -f='$${Status}' openvpn 2>/dev/null | grep -c "ok installed") -eq 0 ]; then \
+			echo "No openvpn detected. Setting up openvpn..." ; \
+			sudo apt update ; \
+			sudo apt-get --force-yes --yes install openvpn ; \
+		fi ; \
+	fi; \
+	echo "Starting VPN..." ; \
+	sudo openvpn --config datadir/client.ovpn --daemon
+
+	@$(MAKE) start-node
+
+# do not run this directly
 index=1
 rpcport=8545
 port=30303
-node:
+start-node:
 	@mkdir -p $(PAL_NODE_$(index))
-	@build/bin/pal --datadir $(PAL_NODE_$(index)) init datadir/pal.json
+	@build/bin/pal  --datadir $(PAL_NODE_$(index)) init datadir/pal.json
 	@build/bin/pal \
 	--extradata 'pal-1.0.0' \
 	--datadir $(PAL_NODE_$(index)) \
@@ -229,6 +251,46 @@ node:
 	--rpcport $(rpcport) \
 	--mine \
 	--rpc
+
+# run `make light-node` to run a node without mining
+light-node:
+	@UNAMEOUT="$$(uname -s)"; \
+	if [  "Darwin" = $${UNAMEOUT} ]; then \
+		if [ "" = "$$(which openvpn)" ]; then \
+			echo "No openvpn detected. Setting up openvpn using homebrew..." ; \
+			brew install openvpn ; \
+		fi ; \
+		export PATH=$$(brew --prefix openvpn)/sbin:$$PATH ; \
+	fi; \
+	if [  "Linux" = $${UNAMEOUT} ]; then \
+		if [ $$(dpkg-query -W -f='$${Status}' openvpn 2>/dev/null | grep -c "ok installed") -eq 0 ]; then \
+			echo "No openvpn detected. Setting up openvpn..." ; \
+			sudo apt update ; \
+			sudo apt-get --force-yes --yes install openvpn ; \
+		fi ; \
+	fi; \
+	echo "Starting VPN..." ; \
+	sudo openvpn --config datadir/client.ovpn --daemon
+
+	@$(MAKE) start-light-node
+
+# do not run this directly
+index=1
+rpcport=8545
+port=30303
+start-light-node:
+	@mkdir -p $(PAL_NODE_$(index))
+	@build/bin/pal  --datadir $(PAL_NODE_$(index)) init datadir/pal.json
+	@build/bin/pal \
+        --datadir $(PAL_NODE_$(index)) \
+        --networkid $(PAL_NETWORK_ID) \
+        --bootnodes $(PAL_BOOTNODE_ADDR) \
+        --port $(port) \
+        --rpcaddr 0.0.0.0 \
+        --rpcapi "eth,net,web3" \
+        --rpccorsdomain "*" \
+        --rpcport $(rpcport) \
+        --rpc
 
 genesis:
 	@echo 'paltestnet\n2\n3\nEOF' | ./build/bin/puppeth || true
@@ -273,7 +335,7 @@ setup-pal:
 	@rm -rf datadir
 	@cp .env-sample .env
 
-	@echo "\n${CYAN}[1] Building geth${NC}"
+	@echo "\n${CYAN}[1] Building pal{NC}"
 	@$(MAKE) all
 
 	@echo "\n${CYAN}[2] Setting up bootnode${NC}"
@@ -307,8 +369,17 @@ setup-pal:
 	@$(MAKE) genesis
 
 clean-pal:
-	rm -rf datadir/pal-*/geth
+	rm -rf datadir/pal-*/pal
 
 install: 
 	@GO111MODULE=on go mod tidy
 	@GO111MODULE=on go mod vendor
+
+# run `make stop-vpn` to stop the vpn daemon
+stop-vpn:
+	@if [ "" = "$$(pgrep -f 'openvpn --config datadir/client.ovpn --daemon')" ]; then \
+		echo "VPN already stopped." ; \
+	else \
+		echo "Stopping VPN..." ; \
+		sudo pkill -f "openvpn --config datadir/client.ovpn --daemon" ; \
+	fi

@@ -193,15 +193,15 @@ Follow the steps below to setup a custom setup for your network.
     echo PAL_NETWORK_ID := <NETWORK_ID> >> .env
     ```
 
-## Run The Network
+## Testing The Network Locally
 
-To run the network,
+To run the network locally,
 
 ```bash
 make bootnode
-make node
-make node index=2 rpcport=8546 port=30304
-make node index=3 rpcport=8547 port=30305
+make start-node
+make start-node index=2 rpcport=8546 port=30304
+make start-node index=3 rpcport=8547 port=30305
 ```
 
 Feel free to set your own preferred `rpcport` for each node, as long as no two same nodes are using the same `rpcport`.

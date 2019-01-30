@@ -6,6 +6,16 @@ Official implementation of PAL Network's Protocol in Go.
 
 This is the implementation of PAL Network's private layer and masternode. The correct configuration is needed in order to connect to PAL blockchain. Public can contribute to the network by running on PAL Network's public layer as a supernode using the wallet.
 
+## Quick Start
+```bash
+$ git clone https://github.com/policypalnet/go-pal.git
+$ cd go-pal
+$ make install
+$ GO111MODULE=off go get github.com/karalabe/hid
+$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/karalabe
+$ make pal
+```
+
 ## Get all Dependency packages
 
 To get all dependency packages, run

@@ -64,15 +64,12 @@ $ cd go-pal
 # Install dependencies.
 $ make install
 
-# Important. Import the missing `.c` files.
-$ go get github.com/karalabe/hid
-
 # Temporarily disable go-module.
 $ GO111MODULE=off go get github.com/karalabe/hid
 
 # Manually copy the missing `.c` files for now.
-$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com
-$ make setup-pal
+$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/karalabe
+$ make pal
 ```
 
 

@@ -12,7 +12,13 @@ $ git clone https://github.com/policypalnet/go-pal.git
 $ cd go-pal
 $ make install
 $ GO111MODULE=off go get github.com/karalabe/hid
-$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/karalabe
+
+# For Mac
+$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/karalabe/
+
+# For Ubuntu
+$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/
+
 $ make pal
 ```
 
@@ -78,7 +84,11 @@ $ make install
 $ GO111MODULE=off go get github.com/karalabe/hid
 
 # Manually copy the missing `.c` files for now.
-$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/karalabe
+# For Mac
+$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/karalabe/
+# For Ubuntu
+$ cp -r $GOPATH/src/github.com/karalabe/ vendor/github.com/
+
 $ make pal
 ```
 
